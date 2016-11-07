@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<!-- Main Header -->
+	<header class="main-header" th:fragment="main-header">
+		<!-- Logo -->
+		<a href="/" th:href="@{/}" class="logo" id="miyavalogo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+		</a>
+
+		<!-- Header Navbar -->
+		<nav class="navbar navbar-static-top" role="navigation">
+			<!-- Sidebar toggle button-->
+			<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
+				role="button"> <span class="sr-only">Toggle navigation</span>
+			</a>
+			<!-- Navbar Right Menu -->
+			<div class="navbar-custom-menu">
+				<ul class="nav navbar-nav">
+
+					<!-- User Account Menu -->
+					<li class="dropdown user user-menu">
+						<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"> <span class="hidden-xs">Alexander
+								Pierce</span>
+					</a>
+						<ul class="dropdown-menu">
+							<li class="user-header">
+								<p>
+									Alexander Pierce - Web Developer <small>Member since
+										Nov. 2012</small>
+								</p>
+							</li>
+							<!-- Menu Footer-->
+							<li class="user-footer">
+								<div class="pull-left">
+									<a href="#" class="btn btn-default btn-flat">Profile</a>
+								</div>
+								<div class="pull-right">
+									<form th:action="@{/logout}" method="post">
+										<input type="submit" value="Sign Out" />
+									</form>
+
+								</div>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+
+	<!-- Left side column. contains the logo and sidebar -->
+	<aside class="main-sidebar" th:fragment="main-sidebar">
+
+		<!-- sidebar: style can be found in sidebar.less -->
+		<section class="sidebar">
+
+			<!-- search form (Optional) -->
+			<form action="#" method="get" class="sidebar-form">
+				<div class="input-group">
+					<input type="text" name="q" class="form-control"
+						placeholder="Search..."> <span class="input-group-btn">
+						<button type="submit" name="search" id="search-btn"
+							class="btn btn-flat">
+							<i class="fa fa-search"></i>
+						</button>
+					</span>
+				</div>
+			</form>
+			<!-- /.search form -->
+
+			<!-- Sidebar Menu -->
+			<ul class="sidebar-menu">
+				<li class="header" th:text="#{common.menu.header}">MAIN MENUE</li>
+				<!-- Optionally, you can add icons to the links -->
+				<li class=""><a href="#" th:href="@{/}"><i
+						class="fa fa-dashboard"></i> <span
+						th:text="#{common.menu.dashboard}">Dashboard</span></a></li>
+
+				<!-- Stammdaten -->
+				<li class="treeview active"><a href="#"><i
+						class="fa fa-gears"></i><span th:text="#{common.menu.masterdata}">Master
+							Data</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<ul class="treeview-menu">
+						<li class="active"><a href="#" th:href="@{/user}"
+							th:text="#{common.menu.user}">Benutzerverwaltung</a></li>
+					</ul></li>
+			</ul>
+			<!-- /.sidebar-menu -->
+		</section>
+		<!-- /.sidebar -->
+	</aside>
+
+	<!-- Main Footer -->
+	<footer class="main-footer" th:fragment="main-footer">
+		<strong>Copyright &copy; <span
+			th:text="${#dates.year(#dates.createNow())}">2016</span> <span
+			id="company_name" th:text="#{infos.company_name}"></span>
+		</strong> <span th:text="#{infos.rechte_vorbehalten}">All rights
+			reserved.</span>
+	</footer>
+
+	<th:block th:fragment="breadcrumb">
+		<ol class="breadcrumb">
+			<th:block th:each="item, itemStat : ${breadcrumbs}">
+				<li class="" th:classappend="${itemStat.last}? 'active'"><a
+					href="#" th:href="@{${item.link}}"><i th:if="${item.icon}"
+						class="fa" th:classappend="${item.icon}"></i> <th:block
+							th:text="#{${item.linktext}}"> Level</th:block></a></li>
+			</th:block>
+		</ol>
+	</th:block>
+
+</body>
+</html>
